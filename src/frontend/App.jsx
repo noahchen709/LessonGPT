@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/frontend/components/ui/button';
+import { Buffer } from 'buffer';
+
 
 const steps = [
   {
@@ -90,18 +92,26 @@ const steps = [
 
 // Generate content
 import { GoogleGenAI } from "@google/genai";
+import * as fs from 'fs';
 
 const ai = new GoogleGenAI({ apiKey: "AIzaSyBgZh7NFUiZSkzcOk__8LaQO0Vq8DYbquA" });
 
 async function main() {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
-    contents: "Tell me a joke",
-    config: {
-      maxOutputTokens: "100",
-    }
-  });
-  console.log(response.text);
+    const contents = [
+        { text: "Summarize this document" },
+        {
+            inlineData: {
+                mimeType: 'application/pdf',
+                data: Buffer.from(fs.readFileSync("/Users/noahchen/Downloads/Session\ 11\ \(2025\)\ -\ Copy.pdf")).toString("base64")
+            }
+        }
+    ];
+
+    const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: contents
+    });
+    console.log(response.text);
 }
 
 
