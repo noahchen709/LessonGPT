@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Button } from '@/frontend/components/ui/button';
-import { Buffer } from 'buffer';
 
 
 const steps = [
