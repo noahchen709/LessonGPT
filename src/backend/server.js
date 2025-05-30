@@ -1,5 +1,5 @@
 // Generate content
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 import * as fs from 'fs';
 import { Buffer } from 'buffer';
 

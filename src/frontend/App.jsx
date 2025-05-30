@@ -90,30 +90,6 @@ const steps = [
   }
 ]
 
-// Generate content
-import { GoogleGenAI } from "@google/genai";
-import * as fs from 'fs';
-
-const ai = new GoogleGenAI({ apiKey: "AIzaSyBgZh7NFUiZSkzcOk__8LaQO0Vq8DYbquA" });
-
-async function main() {
-    const contents = [
-        { text: "Summarize this document" },
-        {
-            inlineData: {
-                mimeType: 'application/pdf',
-                data: Buffer.from(fs.readFileSync("/Users/noahchen/Downloads/Session\ 11\ \(2025\)\ -\ Copy.pdf")).toString("base64")
-            }
-        }
-    ];
-
-    const response = await ai.models.generateContent({
-        model: "gemini-2.0-flash",
-        contents: contents
-    });
-    console.log(response.text);
-}
-
 
 export default function LessonPrototype() {
   const [step, setStep] = useState(0);
@@ -163,7 +139,6 @@ export default function LessonPrototype() {
           </div>
         )}
       </div>
-      <Button onClick={main}> TEST (look at console)</Button>
     </div>
   );
 }
