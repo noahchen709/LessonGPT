@@ -16,31 +16,43 @@ const ai = new GoogleGenAI({
   apiKey: "AIzaSyBgZh7NFUiZSkzcOk__8LaQO0Vq8DYbquA",
 });
 
-async function main() {
-  const contents = [
-    {
-      text: `Generate an interactive lesson like Duolingo and Briliant for this lesson. 
+// Generate content
+app.post("/quiz", async (req, res) => {
+  try {
+    const file = req.files?.file;
+    if (!file) return res.status(400).send("No file uploaded");
+  
+    const contents = [
+      {
+        text: `Generate an interactive lesson like Duolingo and Briliant for this lesson. 
                 Produce JSON matching this specification:
                 Step = { "id": integer, "question": string, "options": array, "answer": string, "explanation": string }
                 Return: array<Step>`,
-    },
-    {
-      inlineData: {
-        mimeType: "application/pdf",
-        data: Buffer.from(
-          fs.readFileSync(
-            "/Users/noahchen/Downloads/Session 11 (2025) - Copy.pdf"
-          )
-        ).toString("base64"),
       },
-    },
-  ];
+      {
+        inlineData: {
+          mimeType: file.mimetype,
+          data: file.data.toString("base64"),
+        },
+      },
+    ];
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
-    contents: contents,
-  });
-  console.log(response.text);
-}
+    const result = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: contents,
+    });
+    // Extract JSON part from response
+    const match = result.text.match(/\[\s*{[\s\S]*?}\s*\]/);
+    if (!match) return res.status(500).send("Gemini did not return valid JSON");
 
-main();
+    const quiz = JSON.parse(match[0]);
+    res.json({ steps: quiz });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error generating quiz");
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
