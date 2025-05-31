@@ -10,7 +10,7 @@ app.use(cors());
 app.use(fileUpload());
 
 const ai = new GoogleGenAI({
-  apiKey: "AIzaSyBgZh7NFUiZSkzcOk__8LaQO0Vq8DYbquA",
+  apiKey: "AIzaSyA-5qnE8dksE8zfj-F1j07ocX6YrSSjZzo",
 });
 
 // Generate content
