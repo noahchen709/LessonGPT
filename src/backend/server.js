@@ -3,9 +3,6 @@ import fileUpload from "express-fileupload";
 import cors from "cors";
 import { GoogleGenAI, Type } from "@google/genai";
 
-import * as fs from "fs";
-import { Buffer } from "buffer";
-
 const app = express();
 const port = 3001;
 
