@@ -27,7 +27,8 @@ app.post("/quiz", async (req, res) => {
         text: `Generate an interactive lesson like Duolingo and Briliant for this lesson. 
                 Produce JSON matching this specification:
                 Step = { "id": integer, "question": string, "options": array, "answer": string, "explanation": string }
-                Return: array<Step>`,
+                Return: array<Step>
+                each question should have 4 options`,
       },
       {
         inlineData: {
