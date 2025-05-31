@@ -2,6 +2,8 @@ import express from "express";
 import fileUpload from "express-fileupload";
 import cors from "cors";
 import { GoogleGenAI, Type } from "@google/genai";
+import dotenv from 'dotenv';
+dotenv.config({ path: '../../.env' });
 
 const app = express();
 const port = 3001;
@@ -10,7 +12,7 @@ app.use(cors());
 app.use(fileUpload());
 
 const ai = new GoogleGenAI({
-  apiKey: "AIzaSyA-5qnE8dksE8zfj-F1j07ocX6YrSSjZzo",
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
 // Generate content
