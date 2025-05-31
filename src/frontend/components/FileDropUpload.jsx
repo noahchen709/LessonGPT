@@ -32,9 +32,8 @@ export default function FileDropUpload({ onSuccess }) {
       }}
       onDragLeave={() => setDragOver(false)}
       onDrop={handleDrop}
-      className={`border-2 border-dashed rounded-xl p-8 text-center transition ${
-        dragOver ? "border-blue-500 bg-blue-50" : "border-gray-300"
-      }`}
+      className={`border-2 border-dashed rounded-xl p-8 text-center transition ${dragOver ? "border-blue-500 bg-blue-50" : "border-gray-300"
+        }`}
     >
       <p className="text-gray-600">
         {uploading ? "Uploading..." : "Drag & drop a PDF lesson file here"}
