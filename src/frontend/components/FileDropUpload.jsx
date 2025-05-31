@@ -2,15 +2,15 @@ import { useState } from 'react';
 
 export default function FileDropUpload({ onSuccess }) {
   const [dragOver, setDragOver] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [generating, setGenerating] = useState(false);
 
   const handleDrop = async (e) => {
     e.preventDefault();
     setDragOver(false);
     const file = e.dataTransfer.files[0];
-    if (!file || file.type !== 'application/pdf') return;
+    if (!file) return;
 
-    setUploading(true);
+    setGenerating(true);
     const formData = new FormData();
     formData.append("file", file);
 
@@ -21,7 +21,7 @@ export default function FileDropUpload({ onSuccess }) {
 
     const data = await res.json();
     onSuccess(data.steps);
-    setUploading(false);
+    setGenerating(false);
   };
 
   return (
@@ -36,7 +36,8 @@ export default function FileDropUpload({ onSuccess }) {
         }`}
     >
       <p className="text-gray-600">
-        {uploading ? "Uploading..." : "Drag & drop a PDF lesson file here"}
+        {generating ? "Generating... (May take a few seconds)"
+          : "Drag & drop a PDF lesson file here"}
       </p>
     </div>
   );
