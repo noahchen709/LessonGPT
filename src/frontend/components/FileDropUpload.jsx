@@ -8,7 +8,10 @@ export default function FileDropUpload({ onSuccess }) {
     e.preventDefault();
     setDragOver(false);
     const file = e.dataTransfer.files[0];
-    if (!file) return;
+    if (!file || file.type !== 'application/pdf') {
+      alert("Please upload a PDF file.");
+      return;
+    } 
 
     setGenerating(true);
     const formData = new FormData();
