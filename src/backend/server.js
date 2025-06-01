@@ -3,10 +3,14 @@ import fileUpload from "express-fileupload";
 import cors from "cors";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from 'dotenv';
-dotenv.config({ path: '../../.env' });
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(fileUpload());
