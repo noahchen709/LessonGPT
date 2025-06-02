@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Spinner } from '@/components/ui/spinner';
 
 export default function FileDropUpload({ onSuccess }) {
   const [dragOver, setDragOver] = useState(false);
@@ -39,6 +40,8 @@ export default function FileDropUpload({ onSuccess }) {
       className={`border-2 border-dashed rounded-xl p-8 text-center transition ${dragOver ? "border-blue-500 bg-blue-50" : "border-gray-300"
         }`}
     >
+      {/* Spinning circle */}
+      {generating && (<Spinner></Spinner>)}
       <p className="text-gray-600">
         {generating ? "Generating... (May take a few seconds)"
           : "Drag & drop a PDF lesson file here"}
