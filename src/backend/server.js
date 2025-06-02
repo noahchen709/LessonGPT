@@ -18,6 +18,10 @@ app.use(cors({
 
 app.use(fileUpload());
 
+app.get("/", (req, res) => {
+  res.send("Backend is running ✅");
+});
+
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
 });
