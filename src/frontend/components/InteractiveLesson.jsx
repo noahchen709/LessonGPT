@@ -15,8 +15,6 @@ export default function LessonPrototype({ steps }) {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <h1 className="text-xl font-bold mb-4">LessonGPT</h1>
       <div className="p-4 border rounded shadow bg-white">
         <p className="font-medium mb-2">{current.question}</p>
         {current.options.map(option => (
@@ -49,6 +47,5 @@ export default function LessonPrototype({ steps }) {
           </div>
         )}
       </div>
-    </div>
   );
 }
