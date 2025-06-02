@@ -17,7 +17,8 @@ export default function FileDropUpload({ onSuccess }) {
     const formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("http://localhost:3001/quiz", {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const res = await fetch(`${apiUrl}/quiz`, {
       method: "POST",
       body: formData,
     });
