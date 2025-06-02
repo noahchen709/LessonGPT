@@ -12,7 +12,10 @@ dotenv.config({ path: path.resolve(__dirname, './.env') });
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173", "https://lesson-gpt-eta.vercel.app"],
+}));
+
 app.use(fileUpload());
 
 const ai = new GoogleGenAI({
