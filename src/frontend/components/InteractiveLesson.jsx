@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@/frontend/components/ui/button';
+import { Button } from '@/components/ui/button';
 
 export default function LessonPrototype({ steps }) {
   const [step, setStep] = useState(0);
