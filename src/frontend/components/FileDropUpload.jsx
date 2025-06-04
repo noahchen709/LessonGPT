@@ -10,7 +10,12 @@ export default function FileDropUpload({ onSuccess }) {
     setDragOver(false);
     const file = e.dataTransfer.files[0];
     if (!file || file.type !== 'application/pdf') {
-      alert("Please upload a PDF file.");
+      if (file.type == 'application/vnd.openxmlformats-officedocument.presentationml.presentation') {
+        alert("Please download the presentation as a PDF and upload again.")
+      }
+      else {
+        alert("Please upload a PDF file.");
+      }
       return;
     } 
 
