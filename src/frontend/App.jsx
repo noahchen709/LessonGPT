@@ -7,7 +7,7 @@ export default function App() {
 
   return (
     <div className="max-w-xl mx-auto p-4">
-      <h1 className="text-xl font-bold mb-4">LessonGPT</h1>
+      <h1 className="text-xl font-bold mb-4 text-[#1cb0f6]">LessonGPT</h1>
       <div className="p-4">
         {!quizSteps ? (
           <FileDropUpload onSuccess={setQuizSteps} />

@@ -26,7 +26,7 @@ export default function LessonPrototype({ steps }) {
         {current.options.map(option => (
           <Button
             key={option}
-            variant={selected === option ? 'default' : 'outline'}
+            variant={selected === option ? 'blue' : 'outline'}
             className={`w-full justify-start h-auto border `}
             onClick={() => setSelected(option)}
           >
@@ -35,7 +35,7 @@ export default function LessonPrototype({ steps }) {
         ))}
       </div>
       {selected && !showResult && (
-        <Button className="mt-4 w-full" onClick={() => setShowResult(true)}>Check Answer</Button>
+        <Button variant="blue" className="mt-4 w-full" onClick={() => setShowResult(true)}>Check Answer</Button>
       )}
       {showResult && (
         <div className="mt-4 space-y-2">
@@ -46,7 +46,7 @@ export default function LessonPrototype({ steps }) {
           )}
           <p className="text-sm text-gray-700">{current.explanation}</p>
           {step < steps.length - 1 ? (
-            <Button className="w-full" onClick={handleNext}>Next</Button>
+            <Button variant="blue" className="w-full" onClick={handleNext}>Next</Button>
           ) : (
             <p className="mt-2 font-medium text-center">🎉 Lesson Complete!</p>
           )}
