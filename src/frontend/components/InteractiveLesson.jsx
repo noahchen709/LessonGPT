@@ -27,7 +27,7 @@ export default function LessonPrototype({ steps }) {
           <Button
             key={option}
             variant={selected === option ? 'blue' : 'outline'}
-            className={`w-full justify-start h-auto border `}
+            className={`w-full justify-start h-auto`}
             onClick={() => setSelected(option)}
           >
             <p className="text-left break-words whitespace-normal">{option}</p>
