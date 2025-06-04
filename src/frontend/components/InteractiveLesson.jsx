@@ -27,10 +27,10 @@ export default function LessonPrototype({ steps }) {
           <Button
             key={option}
             variant={selected === option ? 'default' : 'outline'}
-            className={`w-full justify-start}`}
+            className={`w-full justify-start h-auto border `}
             onClick={() => setSelected(option)}
           >
-            {option}
+            <p className="text-left break-words whitespace-normal">{option}</p>
           </Button>
         ))}
       </div>
